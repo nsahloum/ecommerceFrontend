@@ -11,6 +11,12 @@ export class ProductService {
   private baseUrl = 'http://localhost:8080/api/products';
   constructor(private httpClient: HttpClient) { }
 
+  getMaxPage(): Observable<number> {
+    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+      map(response => response.page.totalPages)
+    );
+  }
+
   getCurrentPages(pageNo?: number): Observable<number> {
     if(!pageNo){
       pageNo = 0;
