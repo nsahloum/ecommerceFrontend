@@ -10,10 +10,12 @@ import {Product} from "../../common/product";
 export class ProductListComponent implements OnInit {
 
   products: Product[];
+  numberOfPages: number;
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.listProduct();
+    this.getNumberOfPages();
   }
 
   listProduct() {
@@ -24,4 +26,11 @@ export class ProductListComponent implements OnInit {
     )
   }
 
+  getNumberOfPages() {
+    this.productService.getNumberOfPage().subscribe(
+      data => {
+        this.numberOfPages = data;
+      }
+    )
+  }
 }
