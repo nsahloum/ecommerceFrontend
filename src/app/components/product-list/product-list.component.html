@@ -16,3 +16,8 @@
   </tr>
   </tbody>
 </table>
+<ul class="pagination center-align">
+  <li class="waves-effect" (click)="setPageNo(currentPage - 1)"><i class="material-icons">chevron_left</i></li>
+  <li>{{currentPage}}</li>
+  <li class="waves-effect" (click)="setPageNo(currentPage + 1)"><i class="material-icons">chevron_right</i></li>
+</ul>

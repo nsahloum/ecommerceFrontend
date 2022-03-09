@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {Product} from "../common/product";
 
@@ -11,14 +11,22 @@ export class ProductService {
   private baseUrl = 'http://localhost:8080/api/products';
   constructor(private httpClient: HttpClient) { }
 
-  getNumberOfPage(): Observable<number> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
-      map(response => response.page.totalPages)
+  getCurrentPages(pageNo?: number): Observable<number> {
+    if(!pageNo){
+      pageNo = 0;
+    }
+  let queryParams = new HttpParams().append("page",pageNo);
+    return this.httpClient.get<GetResponse>(this.baseUrl, {params: queryParams}).pipe(
+      map(response => response.page.number)
     );
   }
 
-  getProductList(): Observable<Product[]> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+  getProductList(pageNo?: number): Observable<Product[]> {
+    if(!pageNo){
+      pageNo = 0;
+    }
+    let queryParams = new HttpParams().append("page",pageNo);
+    return this.httpClient.get<GetResponse>(this.baseUrl, {params: queryParams}).pipe(
       map(response => response._embedded.products)
     );
   }
@@ -29,9 +37,9 @@ interface GetResponse {
     products: Product[];
   },
   page: {
-    size : number,
-    totalElements : number,
-    totalPages : number,
-    number : number
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }

@@ -10,27 +10,35 @@ import {Product} from "../../common/product";
 export class ProductListComponent implements OnInit {
 
   products: Product[];
-  numberOfPages: number;
+  currentPage: number;
+  pageNo: number;
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getPages();
     this.listProduct();
-    this.getNumberOfPages();
+  }
+
+  setPageNo(pageSetter: number){
+    this.pageNo = pageSetter;
+    this.listProduct();
+    this.getPages();
   }
 
   listProduct() {
-    this.productService.getProductList().subscribe(
+    this.productService.getProductList(this.pageNo).subscribe(
       data => {
         this.products = data;
       }
     )
   }
 
-  getNumberOfPages() {
-    this.productService.getNumberOfPage().subscribe(
+  getPages() {
+    this.productService.getCurrentPages(this.pageNo).subscribe(
       data => {
-        this.numberOfPages = data;
+        this.currentPage = data;
       }
     )
   }
+
 }
