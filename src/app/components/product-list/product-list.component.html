@@ -17,7 +17,11 @@
   </tbody>
 </table>
 <ul class="pagination center-align">
-  <li class="waves-effect" (click)="setPageNo(currentPage - 1)"><i class="material-icons">chevron_left</i></li>
+  <li *ngIf="currentPage > 2">(...)</li>
+  <li *ngIf="currentPage > 2" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 2)">{{currentPage - 1}}</li>
+  <li *ngIf="currentPage > 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 1)">{{currentPage}}</li>
   <li>{{currentPage + 1}}</li>
-  <li class="waves-effect" (click)="setPageNo(currentPage + 1)"><i class="material-icons">chevron_right</i></li>
+  <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 1)">{{currentPage + 2}}</li>
+  <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 2)">{{currentPage + 3}}</li>
+  <li *ngIf="currentPage < maxPages - 1">(...)</li>
 </ul>
