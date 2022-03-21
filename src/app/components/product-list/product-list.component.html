@@ -19,11 +19,11 @@
   </tbody>
 </table>
 <ul class="pagination center-align">
-  <li *ngIf="currentPage > 1" class="waves-effect waves-light btn grey darken-3" (click)="setPageNo(1)">First page</li>
-  <li *ngIf="currentPage > 2" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 2)">{{currentPage - 1}}</li>
-  <li *ngIf="currentPage > 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 1)">{{currentPage}}</li>
+  <li *ngIf="currentPage >= 1" class="waves-effect waves-light btn grey darken-3" (click)="setPageNo(1)">First page</li>
+  <li *ngIf="currentPage >= 2" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 2)">{{currentPage - 1}}</li>
+  <li *ngIf="currentPage >= 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage - 1)">{{currentPage}}</li>
   <li class="btn disabled">{{currentPage + 1}}</li>
-  <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 1)">{{currentPage + 2}}</li>
-  <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 2)">{{currentPage + 3}}</li>
+  <li *ngIf="currentPage + 1 < maxPages" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 1)">{{currentPage + 2}}</li>
+  <li *ngIf="currentPage + 2 < maxPages" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 2)">{{currentPage + 3}}</li>
   <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn grey darken-3" (click)="setPageNo(maxPages)">Last page</li>
 </ul>
