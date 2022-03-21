@@ -25,5 +25,5 @@
   <li class="btn disabled">{{currentPage + 1}}</li>
   <li *ngIf="currentPage + 1 < maxPages" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 1)">{{currentPage + 2}}</li>
   <li *ngIf="currentPage + 2 < maxPages" class="waves-effect waves-light btn" (click)="setPageNo(currentPage + 2)">{{currentPage + 3}}</li>
-  <li *ngIf="currentPage < maxPages - 1" class="waves-effect waves-light btn grey darken-3" (click)="setPageNo(maxPages)">Last page</li>
+  <li *ngIf="currentPage + 1 < maxPages" class="waves-effect waves-light btn grey darken-3" (click)="setPageNo(maxPages)">Last page</li>
 </ul>
